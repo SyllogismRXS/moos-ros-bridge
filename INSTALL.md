@@ -19,7 +19,7 @@ I keep all of my git repositories in the same folder for organizational reasons.
 $ mkdir ~/git-repos  
 $ cd ~/git-repos
 
-Make a clone of the repo
+Make a clone of the repo  
 $ git clone git://github.com/SyllogismRXS/moos-ros-bridge.git
 
 Building the Code
