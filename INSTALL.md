@@ -6,7 +6,7 @@ Commands that should be entered at the terminal are denoted with a '$'
 
 Dependencies
 ------------
-ROS - www.ros.org
+ROS - www.ros.org  
 MOOS - http://oceanai.mit.edu/moos-ivp/pmwiki/pmwiki.php?n=Site.Download
 
 Acquiring the Code
