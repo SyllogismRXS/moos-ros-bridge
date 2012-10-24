@@ -1,0 +1,19 @@
+<package>
+  <description brief="moosros_tester">
+
+     moosros_tester
+
+  </description>
+  <author>Kevin DeMarco</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/moosros_tester</url>
+  <depend package="std_msgs"/>
+  <depend package="roscpp"/>
+  <depend package="rospy"/>
+  <depend package="rostopic"/>
+
+
+</package>
+
+

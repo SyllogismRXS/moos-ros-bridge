@@ -1,0 +1,18 @@
+//------------------------------------------------
+// File: bravo.bhv
+// Name: M. Benjamin
+// Date: Jan 1, 2010
+//------------------------------------------------
+
+ServerHost = localhost
+ServerPort = 9000
+//Simulator  = true
+
+//Community    = bravo
+MOOSTimeWarp = 1
+
+ProcessConfig = MOOS_ROS_BRIDGE
+{
+  AppTick    = 1
+  CommsTick  = 20
+}

@@ -1,0 +1,43 @@
+<moosrosconfig>
+
+  <message>
+    <moosname>Counter0</moosname>
+    <rosname>Counter0</rosname>
+    <moostype>Double</moostype>
+    <rostype>std_msgs/Int32</rostype>
+    <direction>toMOOS</direction>
+  </message>
+
+  <message>
+    <moosname>Counter1</moosname>
+    <rosname>Counter1</rosname>
+    <moostype>Double</moostype>
+    <rostype>std_msgs/Int32</rostype>
+    <direction>toMOOS</direction>
+  </message>
+
+  <message>
+    <moosname>Float64Count</moosname>
+    <rosname>Float64Count</rosname>
+    <moostype>Double</moostype>
+    <rostype>std_msgs/Float64</rostype>
+    <direction>toROS</direction>
+  </message>
+
+  <message>
+    <moosname>FloatCount</moosname>
+    <rosname>FloatCount</rosname>
+    <moostype>Double</moostype>
+    <rostype>std_msgs/Float32</rostype>
+    <direction>toMOOS</direction>
+  </message>
+
+  <message>
+    <moosname>StringToMOOS</moosname>
+    <rosname>StringToMOOS</rosname>
+    <moostype>String</moostype>
+    <rostype>std_msgs/String</rostype>
+    <direction>toMOOS</direction>
+  </message>
+
+</moosrosconfig>

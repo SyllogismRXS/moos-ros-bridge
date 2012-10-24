@@ -1,0 +1,19 @@
+<moosrosconfig>
+
+  <message>
+    <moosname>CounterFromROS</moosname>
+    <rosname>CounterFromROS</rosname>
+    <moostype>Double</moostype>
+    <rostype>std_msgs/Int32</rostype>
+    <direction>toMOOS</direction>
+  </message>
+
+  <message>
+    <moosname>CounterFromMOOS</moosname>
+    <rosname>CounterFromMOOS</rosname>
+    <moostype>Double</moostype>
+    <rostype>std_msgs/Int32</rostype>
+    <direction>toROS</direction>
+  </message>
+
+</moosrosconfig>
