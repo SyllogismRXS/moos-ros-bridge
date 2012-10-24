@@ -25,7 +25,7 @@ $ git clone git://github.com/SyllogismRXS/moos-ros-bridge.git
 Building the Code
 -----------------
 Add your new repo to your $ROS_PACKAGE_PATH environment variable.  
-$ echo "export ROS_PACKAGE_PATH=${ROS_PACKAGE_PATH}:~/git-repos/moos-ros-bridge" >> ~/.bashrc
+$ echo "export ROS_PACKAGE_PATH=${ROS_PACKAGE_PATH}:~/git-repos/moos-ros-bridge" >> ~/.bashrc  
 $ . ~/.bashrc
 
 Of course, if you didn't clone your repo into ~/git-repos/, then you will need to modify the previous command accordingly.
