@@ -48,10 +48,10 @@ In a new terminal, start the MOOS Database
 $ MOOSDB
 
 In a new terminal, start MOOS/ROS Bridge  
-$ cd ~/git-repos/moos-ros-bridge/moosros
+$ cd ~/git-repos/moos-ros-bridge/moosros  
 $ rosrun moosros Bridge counters.xml bridge.moos
 
-In a new terminal, start ROS counter 
+In a new terminal, start ROS counter  
 $ rosrun moosros_tester counter
 
 In a new terminal, observe CounterFromROS  
