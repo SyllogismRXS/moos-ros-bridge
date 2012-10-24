@@ -45,3 +45,4 @@ rosbuild_add_executable(Bridge src/MsgContainer.h src/MOOSNode.cpp src/Bridge.cp
 target_link_libraries(Bridge MOOS)
 target_link_libraries(Bridge MOOSGen)
 target_link_libraries(Bridge MOOSUtility)
+target_link_libraries(Bridge boost_thread)
