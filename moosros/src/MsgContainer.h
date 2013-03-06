@@ -40,28 +40,29 @@ using namespace std;
 
 class MsgContainer{
 public:
-     MsgContainer(ros::Publisher new_pub, string new_moosName, string new_rosName,
-		  string new_moosType, string new_rosType){
-	  pub      = new_pub;
-	  moosName = new_moosName;
-	  rosName  = new_rosName;
-	  moosType = new_moosType;
-	  rosType  = new_rosType;
-     }
+	// from MOOS to ROS
+	MsgContainer(ros::Publisher new_pub, string new_moosName, string new_rosName, string new_moosType, string new_rosType){
+		pub      = new_pub;
+		moosName = new_moosName;
+		rosName  = new_rosName;
+		moosType = new_moosType;
+		rosType  = new_rosType;
+	}
 
-     MsgContainer(ros::Subscriber new_sub, string new_moosName, string new_rosName){
-	  sub      = new_sub;
-	  moosName = new_moosName;
-	  rosName  = new_rosName;
-     }
+	// from ROS to MOOS
+	MsgContainer(ros::Subscriber new_sub, string new_moosName, string new_rosName){
+		sub      = new_sub;
+		moosName = new_moosName;
+		rosName  = new_rosName;
+	}
 
-     ros::Publisher pub;
-     ros::Subscriber sub;
+	ros::Publisher pub;
+	ros::Subscriber sub;
 
-     string moosName;
-     string rosName;
-     string moosType;
-     string rosType;
+	string moosName;
+	string rosName;
+	string moosType;
+	string rosType;
 };
 
 #endif

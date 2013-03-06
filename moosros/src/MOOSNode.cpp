@@ -63,6 +63,15 @@ bool MOOSNode::toMOOS(std::string moosName, std::string myString){
      return true;
 }
 
+bool MOOSNode::toMOOS(std::string moosName, std::string myString, bool binaryMode){
+	if(binaryMode)
+		m_Comms.Notify(moosName,(void *)myString.c_str(),myString.size(),MOOSTime());
+	else
+		m_Comms.Notify(moosName,myString,MOOSTime());
+
+	return true;
+}
+
 bool MOOSNode::OnNewMail (MOOSMSG_LIST &NewMail){
      MOOSMSG_LIST::iterator p;
      for( p = NewMail.begin() ; p != NewMail.end() ; p++ ){

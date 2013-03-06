@@ -42,34 +42,34 @@
 class MOOSNode : public CMOOSApp { 
 public:
      //standard construction and destruction
-     MOOSNode(); 
-     virtual ~MOOSNode();
-  
-     bool toMOOS(std::string moosName, double data);
-     bool toMOOS(std::string moosName, std::string myString); 
+	MOOSNode();
+	virtual ~MOOSNode();
 
-     void AssignPublisher(vector<MsgContainer> *msgVec);
+	bool toMOOS(std::string moosName, double data);
+	bool toMOOS(std::string moosName, std::string myString);
+	bool toMOOS(std::string moosName, std::string myString, bool binaryMode);
+	void AssignPublisher(vector<MsgContainer> *msgVec);
 
 protected:
-     double appTick;
-     double commsTick;
+	double appTick;
+	double commsTick;
 
-     //where we handle new mail
-     bool OnNewMail(MOOSMSG_LIST &NewMail); 
+	//where we handle new mail
+	bool OnNewMail(MOOSMSG_LIST &NewMail);
 
-     //where we do the work 
-     bool Iterate(); 
+	//where we do the work
+	bool Iterate();
 
-     //called when we connect to the server 
-     bool OnConnectToServer();
-		
-     //called when we are starting up..
-     bool OnStartUp();
+	//called when we connect to the server
+	bool OnConnectToServer();
 
-     void DoRegistrations();
+	//called when we are starting up..
+	bool OnStartUp();
+
+void DoRegistrations();
 
 private:
-     vector<MsgContainer> *msgVec;
+	vector<MsgContainer> *msgVec;
 
 };
 #endif

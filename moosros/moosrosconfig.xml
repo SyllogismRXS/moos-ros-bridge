@@ -40,4 +40,13 @@
     <direction>toMOOS</direction>
   </message>
 
+  <message>
+    <moosname>BinaryStringToMOOS</moosname>
+    <rosname>BinaryStringToMOOS</rosname>
+    <moostype>String</moostype>
+    <rostype>std_msgs/String/Binary</rostype>
+    <direction>toMOOS</direction>
+  </message>
+
+
 </moosrosconfig>
