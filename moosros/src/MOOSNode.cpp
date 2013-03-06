@@ -63,12 +63,9 @@ bool MOOSNode::toMOOS(std::string moosName, std::string myString){
      return true;
 }
 
-bool MOOSNode::toMOOS(std::string moosName, std::string myString, bool binaryMode){
-	if(binaryMode)
-		m_Comms.Notify(moosName,(void *)myString.c_str(),myString.size(),MOOSTime());
-	else
-		m_Comms.Notify(moosName,myString,MOOSTime());
-
+//Support for binary-string from ROS to MOOS
+bool MOOSNode::toMOOSBinaryString(std::string moosName, std::string myString){
+    m_Comms.Notify(moosName,(void *)myString.c_str(),myString.size(),MOOSTime());
 	return true;
 }
 

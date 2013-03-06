@@ -40,6 +40,7 @@
     <direction>toMOOS</direction>
   </message>
 
+  <!--Support for the binary string - from ROS to MOOS -->
   <message>
     <moosname>BinaryStringToMOOS</moosname>
     <rosname>BinaryStringToMOOS</rosname>

@@ -47,7 +47,7 @@ public:
 
 	bool toMOOS(std::string moosName, double data);
 	bool toMOOS(std::string moosName, std::string myString);
-	bool toMOOS(std::string moosName, std::string myString, bool binaryMode);
+    bool toMOOSBinaryString(std::string moosName, std::string myString);
 	void AssignPublisher(vector<MsgContainer> *msgVec);
 
 protected:

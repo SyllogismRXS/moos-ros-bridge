@@ -159,7 +159,7 @@ void binaryStringCallBack(const ros::MessageEvent<T const>& event){
 		size_t found = topic.find(it->rosName);
 		if(found!=string::npos){
 			const C & msg = event.getMessage();
-			MOOSApp.toMOOS(it->moosName,msg->data,true);
+            MOOSApp.toMOOSBinaryString(it->moosName,msg->data);
 		}
 	}
 }
@@ -241,6 +241,7 @@ int CreateROSPubSub(xml_node<> *node, vector<MsgContainer> *pubVec, vector<MsgCo
 					      node->first_node("moosname")->value(),
 					      node->first_node("rosname")->value()));
 	  }else if(strcmp(node->first_node("rostype")->value(),"std_msgs/String/Binary") == SUCCESS){
+            // Binary-string support
 		  subVec->push_back(MsgContainer(n->subscribe(node->first_node("rosname")->value(),
 							  1000,binaryStringCallBack<std_msgs::String,std_msgs::StringConstPtr>, ros::TransportHints().unreliable()),
 						 node->first_node("moosname")->value(),
