@@ -28,21 +28,33 @@ set(LIBS ${LIBS} ${MOOS_LIBRARIES})
 
 INCLUDE(FindPackageMessage) 
 
-message("*********************************************")
+message("----------------------------------------------")
 if(MOOS_FOUND)
   message("MOOS FOUND!")
-  message( "${MOOS_SOURCE_DIR}")
 else(MOOS_FOUND)
   message("MOOS NOT FOUND")
 endif(MOOS_FOUND)
-message("*********************************************")
+message("----------------------------------------------")
 
 #common commands for building c++ executables and libraries
 rosbuild_add_boost_directories()
 
-rosbuild_add_executable(Bridge src/MsgContainer.h src/MOOSNode.cpp src/Bridge.cpp)
+#FIND_PACKAGE( Boost 1.53 COMPONENTS thread REQUIRED )
+#INCLUDE_DIRECTORIES( ${Boost_INCLUDE_DIR} )
+#
+#message("----------------------------------------")
+#message(" Boost Libs: ${Boost_LIBRARIES}")
+
+#TARGET_LINK_LIBRARIES( Bridge ${Boost_LIBRARIES} )
+#target_link_libraries(Bridge MOOSGen)
+#target_link_libraries(Bridge MOOSUtility)
+#target_link_libraries(Bridge boost_thread)
+
+rosbuild_add_executable( Bridge 
+  src/MsgContainer.h 
+  src/MOOSNode.cpp 
+  src/Bridge.cpp
+  )
 
 target_link_libraries(Bridge MOOS)
-target_link_libraries(Bridge MOOSGen)
-target_link_libraries(Bridge MOOSUtility)
-target_link_libraries(Bridge boost_thread)
+rosbuild_link_boost(Bridge thread thread-mt)
