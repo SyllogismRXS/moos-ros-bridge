@@ -33,7 +33,7 @@
 #ifndef _MOOS_NODE_H_ 
 #define _MOOS_NODE_H_
 
-#include <MOOSLIB/MOOSApp.h>
+#include <MOOS/libMOOS/App/MOOSApp.h>
 #include "ros/ros.h"
 #include <vector>
 #include "MsgContainer.h"

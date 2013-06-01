@@ -45,7 +45,7 @@
 #include <string>
 
 // MOOS Includes
-#include <MOOSLIB/MOOSApp.h>
+#include <MOOS/libMOOS/App/MOOSApp.h>
 #include "MOOSNode.h"
 #include "MsgContainer.h"
 
