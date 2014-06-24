@@ -13,7 +13,7 @@ ROS - www.ros.org
 MOOS - http://oceanai.mit.edu/moos-ivp/pmwiki/pmwiki.php?n=Site.Download
 
 Compatability
-
+================
 
 As of June 24th, 2014, I have tested moosros with ROS Hydro and moos-ivp 13.5.
 
@@ -105,7 +105,23 @@ echo program print out the following:
 data: 42
 ---
 
-All done for now.
+Bridge Configuration
+========================
+
+The Bridge is configured using an XML file that specifies the names of ROS and
+MOOS topics and the associated data types. Look at
+/path/to/moos-ros-bridge/moosros/counters.xml for an example. In the XML file,
+each message consists of the following members:
+
+moosname - the name of the moos variable
+
+rosname - the name of the ros topic
+
+moostype - the type of the moos variable
+
+rostype - the type of the ros topic
+
+direction - the direction of the data over the bridge (either toMOOS or toROS).
 
 ----------------------------------------
 Kevin DeMarco <kevin.demarco@gmail.com>
