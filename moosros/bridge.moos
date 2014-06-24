@@ -6,13 +6,29 @@
 
 ServerHost = localhost
 ServerPort = 9000
-//Simulator  = true
+Simulator  = true
 
-//Community    = bravo
+Community    = moosros
 MOOSTimeWarp = 1
+
+Processconfig = ANTLER
+{
+  MSBetweenLaunches = 100
+   
+  Run = MOOSDB           @ NewConsole = false
+  Run = MOOS_ROS_BRIDGE  @ NewConsole = false
+  Run = uMS              @ NewConsole = false 
+}
+
 
 ProcessConfig = MOOS_ROS_BRIDGE
 {
   AppTick    = 1
   CommsTick  = 20
+}
+
+ProcessConfig = uMS
+{
+  AppTick    = 4
+  CommsTick  = 4
 }
