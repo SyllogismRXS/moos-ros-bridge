@@ -57,4 +57,5 @@ rosbuild_add_executable( Bridge
   )
 
 target_link_libraries(Bridge MOOS)
-rosbuild_link_boost(Bridge thread thread-mt)
+#rosbuild_link_boost(Bridge thread thread-mt)
+rosbuild_link_boost(Bridge thread)
