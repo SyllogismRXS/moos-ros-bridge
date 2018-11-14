@@ -15,8 +15,6 @@ paper:
         organization={IEEE}
     }
 
-http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=6107001&tag=1
-
 ## Build Instructions
 
 ### Install Dependencies
@@ -30,10 +28,11 @@ package manager:
 
 1. Setup a ROS catkin workspace, if you don't have one already:
 
+        $ source /opt/ros/kinetic/setup.sh
         $ mkdir -p ~/catkin_ws/src && cd ~/catkin_ws/
         $ catkin_make
 
-2. Clone this repo into into ~/catkin_ws/src:
+2. Clone this repo into into `~/catkin_ws/src`:
 
         $ cd ~/catkin_ws/src
         $ git clone https://github.com/SyllogismRXS/moos-ros-bridge.git
@@ -63,8 +62,8 @@ In a new terminal, use `uMS` to observe the "CounterFromROS" topic being
 updated in MOOS:
 
     $ uMS
-    
-Make sure HostName is LOCALHOST and Port is 9000. Click on "Connect." You
+
+Make sure HostName is `LOCALHOST` and Port is `9000`. Click on "Connect." You
 should see the CounterFromROS variable incrementing.
 
 At this point, the Bridge is also looking for changes in the "CounterFromMOOS"
@@ -78,7 +77,7 @@ CounterFromMOOS. Choose NUMERIC. Enter value: 42. You should see the rostopic
 echo program print out the following:
 
     data: 42
-    
+
 ---
 
 
@@ -88,7 +87,9 @@ Read through the bash script at `moos-ros-bridge/scripts/counter.sh` for an
 example of how to start both the Bridge ROS node and MOOS within the same
 script. Run the script:
 
-    $ rosrun moos-ros-bridge counter.sh        # Type CTRL+c to exit
+    $ rosrun moos-ros-bridge counter.sh
+
+    # Type CTRL+c to exit
 
 ## Bridge Configuration
 
@@ -98,12 +99,12 @@ MOOS topics and the associated data types. Look at
 `moos-ros-bridge/config/moosrosconfig.xml` for examples. In the XML file, each
 message consists of the following members:
 
-moosname - the name of the moos variable
+`moosname` - the name of the moos variable
 
-rosname - the name of the ros topic
+`rosname` - the name of the ros topic
 
-moostype - the type of the moos variable
+`moostype` - the type of the moos variable
 
-rostype - the type of the ros topic
+`rostype` - the type of the ros topic
 
-direction - the direction of the data over the bridge (either toMOOS or toROS).
+`direction` - the direction of the data over the bridge (either toMOOS or toROS).
