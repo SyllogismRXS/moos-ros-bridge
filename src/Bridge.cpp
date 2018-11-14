@@ -1,6 +1,6 @@
 //* The MOOS ROS Bridge
 /**
- * 
+ *
  * @file
  *
  * @author Kevin DeMarco <kevin.demarco@gtri.gatech.edu>
@@ -8,16 +8,16 @@
  * @version 1.0
  *
  * @date May 25th, 2012
- * 
+ *
  * @section LICENSE
- * 
+ *
  * Georgia Tech Research Institute (GTRI)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
  * published by the Free Software Foundation; either version 2 of
  * the License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
@@ -26,8 +26,8 @@
  *
  * @section DESCRIPTION
  *
- * The MOOS ROS Bridge allows for communication between a 
- * MOOS Database and a ROS Core.  
+ * The MOOS ROS Bridge allows for communication between a
+ * MOOS Database and a ROS Core.
  */
 
 // Basic ROS Include
@@ -39,15 +39,15 @@
 #include <fstream>
 #include <stdio.h>
 #include <stdlib.h>
-#include <sys/stat.h> 
+#include <sys/stat.h>
 #include <vector>
 //#include <map>
 #include <string>
 
 // MOOS Includes
 #include <MOOS/libMOOS/App/MOOSApp.h>
-#include "MOOSNode.h"
-#include "MsgContainer.h"
+#include <moos-ros-bridge/MOOSNode.h>
+#include <moos-ros-bridge/MsgContainer.h>
 
 // BOOST Includes
 #include <boost/thread.hpp>
@@ -81,7 +81,7 @@ vector<MsgContainer> subVec;
 MOOSNode MOOSApp;
 void MOOSInit(const char * sMissionFile){
      const char * sMOOSName = "MOOS_ROS_BRIDGE";
-   
+
      MOOSApp.Run(sMOOSName, sMissionFile);
 }
 
@@ -102,7 +102,7 @@ void callBack(const ros::MessageEvent<T const>& event, const std::string &topic)
 ros::M_string header = event.getConnectionHeader();
 
 ros::M_string::iterator it2;
-     
+
 // show content:
 int count = 0;
 for ( it2=header.begin() ; it2 != header.end(); it2++ ) {
@@ -111,7 +111,7 @@ count++;
 }
 
 vector<MsgContainer>::iterator it;
-for ( it = subVec.begin() ; it < subVec.end() ; it++ ){     
+for ( it = subVec.begin() ; it < subVec.end() ; it++ ){
 size_t found = topic.find(it->rosName);
 if(found!=string::npos){
 const C & msg = event.getMessage();
@@ -140,7 +140,7 @@ void callBack(const ros::MessageEvent<T const>& event){
      */
 
      vector<MsgContainer>::iterator it;
-     for ( it = subVec.begin() ; it < subVec.end() ; it++ ){     
+     for ( it = subVec.begin() ; it < subVec.end() ; it++ ){
 	  size_t found = topic.find(it->rosName);
 	  if(found!=string::npos){
 	       const C & msg = event.getMessage();
@@ -176,33 +176,33 @@ int CreateROSPubSub(xml_node<> *node, vector<MsgContainer> *pubVec, vector<MsgCo
      if(strcmp(node->first_node("direction")->value(),"toROS") == SUCCESS){
 	  if(strcmp(node->first_node("rostype")->value(),"std_msgs/Int32") == SUCCESS){
 	       pubVec->push_back(MsgContainer(n->advertise<std_msgs::Int32>(node->first_node("rosname")->value(),1000),
-					      node->first_node("moosname")->value(), 
-					      node->first_node("rosname")->value(), 
-					      node->first_node("moostype")->value(), 
+					      node->first_node("moosname")->value(),
+					      node->first_node("rosname")->value(),
+					      node->first_node("moostype")->value(),
 					      node->first_node("rostype")->value()));
 	  }else if(strcmp(node->first_node("rostype")->value(),"std_msgs/Int64") == SUCCESS){
 	       pubVec->push_back(MsgContainer(n->advertise<std_msgs::Int64>(node->first_node("rosname")->value(),1000),
-					      node->first_node("moosname")->value(), 
-					      node->first_node("rosname")->value(), 
-					      node->first_node("moostype")->value(), 
+					      node->first_node("moosname")->value(),
+					      node->first_node("rosname")->value(),
+					      node->first_node("moostype")->value(),
 					      node->first_node("rostype")->value()));
 	  }else if(strcmp(node->first_node("rostype")->value(),"std_msgs/String") == SUCCESS){
 	       pubVec->push_back(MsgContainer(n->advertise<std_msgs::String>(node->first_node("rosname")->value(),1000),
-					      node->first_node("moosname")->value(), 
-					      node->first_node("rosname")->value(), 
-					      node->first_node("moostype")->value(), 
+					      node->first_node("moosname")->value(),
+					      node->first_node("rosname")->value(),
+					      node->first_node("moostype")->value(),
 					      node->first_node("rostype")->value()));
 	  }else if(strcmp(node->first_node("rostype")->value(),"std_msgs/Float32") == SUCCESS){
 	       pubVec->push_back(MsgContainer(n->advertise<std_msgs::Float32>(node->first_node("rosname")->value(),1000),
-					      node->first_node("moosname")->value(), 
-					      node->first_node("rosname")->value(), 
-					      node->first_node("moostype")->value(), 
+					      node->first_node("moosname")->value(),
+					      node->first_node("rosname")->value(),
+					      node->first_node("moostype")->value(),
 					      node->first_node("rostype")->value()));
 	  }else if(strcmp(node->first_node("rostype")->value(),"std_msgs/Float64") == SUCCESS){
 	       pubVec->push_back(MsgContainer(n->advertise<std_msgs::Float64>(node->first_node("rosname")->value(),1000),
-					      node->first_node("moosname")->value(), 
-					      node->first_node("rosname")->value(), 
-					      node->first_node("moostype")->value(), 
+					      node->first_node("moosname")->value(),
+					      node->first_node("rosname")->value(),
+					      node->first_node("moostype")->value(),
 					      node->first_node("rostype")->value()));
 	  }else{
 	       ROS_INFO("ERROR PARSING XML CONFIG FILE\n");
@@ -211,8 +211,8 @@ int CreateROSPubSub(xml_node<> *node, vector<MsgContainer> *pubVec, vector<MsgCo
 
 	  // ROS Publishers to MOOS Subscribers
 	  // In the current release of ROS, the "topic" name is not required to be transmitted with the data, this makes it difficult
-	  // for us to decode which message is from where in the callback.  So we force the "topic" name to be transmitted 
-	  // by setting the comm links to be unreliable. However, this could change in future versions of ROS, need to 
+	  // for us to decode which message is from where in the callback.  So we force the "topic" name to be transmitted
+	  // by setting the comm links to be unreliable. However, this could change in future versions of ROS, need to
 	  // keep an eye on this functionality.
      }else if(strcmp(node->first_node("direction")->value(),"toMOOS") == SUCCESS){
 	  if(strcmp(node->first_node("rostype")->value(),"std_msgs/Int32") == 0){

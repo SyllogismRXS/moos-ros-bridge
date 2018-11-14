@@ -1,6 +1,6 @@
 //* The MOOS ROS Bridge
 /**
- * 
+ *
  * @file
  *
  * @author Kevin DeMarco <kevin.demarco@gtri.gatech.edu>
@@ -8,16 +8,16 @@
  * @version 1.0
  *
  * @date May 25th, 2012
- * 
+ *
  * @section LICENSE
- * 
+ *
  * Georgia Tech Research Institute (GTRI)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
  * published by the Free Software Foundation; either version 2 of
  * the License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
@@ -26,30 +26,31 @@
  *
  * @section DESCRIPTION
  *
- * The MOOS ROS Bridge allows for communication between a 
- * MOOS Database and a ROS Core.  
+ * The MOOS ROS Bridge allows for communication between a
+ * MOOS Database and a ROS Core.
  */
 
-#include "MOOSNode.h"
+#include <moos-ros-bridge/MOOSNode.h>
+#include <moos-ros-bridge/MsgContainer.h>
+
 #include "ros/ros.h"
 #include "std_msgs/Int32.h"
 #include "std_msgs/Int64.h"
 #include "std_msgs/Float32.h"
 #include "std_msgs/Float64.h"
 #include "std_msgs/String.h"
-#include "MsgContainer.h"
 #include <vector>
 
 //default constructor
 MOOSNode::MOOSNode()
-{ 
+{
 }
 
 void MOOSNode::AssignPublisher(vector<MsgContainer> *new_msgVec){
      msgVec = new_msgVec;
 }
 
-//default (virtual) destructor 
+//default (virtual) destructor
 MOOSNode::~MOOSNode(){
 }
 
@@ -72,7 +73,7 @@ bool MOOSNode::toMOOSBinaryString(std::string moosName, std::string myString){
 bool MOOSNode::OnNewMail (MOOSMSG_LIST &NewMail){
      MOOSMSG_LIST::iterator p;
      for( p = NewMail.begin() ; p != NewMail.end() ; p++ ){
-    
+
 	  CMOOSMsg & rMsg = *p;
 
 	  //Every time a new type is added, a new IF statement is
@@ -113,12 +114,12 @@ bool MOOSNode::OnNewMail (MOOSMSG_LIST &NewMail){
      }//end Mailbox for
      return true;
 }
- 
-/* 
-   called by the base class when the application has made contact with 
-   the MOOSDB and a channel has been opened . Place code to specify what 
-   notifications you want to receive here . 
-*/ 
+
+/*
+   called by the base class when the application has made contact with
+   the MOOSDB and a channel has been opened . Place code to specify what
+   notifications you want to receive here .
+*/
 bool MOOSNode::OnConnectToServer()
 {
      DoRegistrations();
@@ -126,18 +127,18 @@ bool MOOSNode::OnConnectToServer()
 }
 
 /*
-  Called by the base class periodically. This is where you place code 
-  which does the work of the application 
-*/ 
+  Called by the base class periodically. This is where you place code
+  which does the work of the application
+*/
 bool MOOSNode::Iterate(){
      return true;
 }
 
-/* 
-   called by the base class before the first :: Iterate is called . Place 
-   startup code here − especially code which reads configuration data from the 
-   mission file 
-*/ 
+/*
+   called by the base class before the first :: Iterate is called . Place
+   startup code here − especially code which reads configuration data from the
+   mission file
+*/
 bool MOOSNode::OnStartUp()
 {
      appTick = 1;
@@ -146,14 +147,14 @@ bool MOOSNode::OnStartUp()
      if(!m_MissionReader.GetConfigurationParam("AppTick",appTick)){
 	  MOOSTrace("Warning, AppTick not set.\n");
      }
-  
+
      if(!m_MissionReader.GetConfigurationParam("CommsTick",commsTick)){
 	  MOOSTrace("Warning, CommsTick not set.\n");
      }
 
      SetAppFreq(appTick);
      SetCommsFreq(commsTick);
-  
+
      DoRegistrations();
 
      return true;
@@ -167,5 +168,5 @@ void MOOSNode::DoRegistrations(){
 	  char buf[512];
 	  sprintf(buf,"Subscribing to %s\n",it->moosName.c_str());
 	  MOOSTrace(buf);
-     } 
+     }
 }
