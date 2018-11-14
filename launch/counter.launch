@@ -1,0 +1,10 @@
+<launch>
+
+  <node pkg="moos-ros-bridge" type="Bridge" name="Bridge" 
+        args="$(find moos-ros-bridge)/config/counters.xml $(find moos-ros-bridge)/config/bridge.moos" 
+        respawn="false" output="screen" />
+
+  <node pkg="moos-ros-bridge" type="counter" name="counter" respawn="false" 
+        output="screen" />
+  
+</launch>

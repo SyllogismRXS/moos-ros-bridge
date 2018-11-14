@@ -14,12 +14,12 @@ paper:
         year={2011},
         organization={IEEE}
     }
-    
+
 http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=6107001&tag=1
 
-# Build Instructions
+## Build Instructions
 
-## Install Dependencies
+### Install Dependencies
 
 First, install MOOS as normal. Then, install some extra dependencies from your
 package manager:
@@ -37,77 +37,66 @@ package manager:
 
         $ cd ~/catkin_ws/src
         $ git clone https://github.com/SyllogismRXS/moos-ros-bridge.git
-        
+
 3. Build it:
 
         $ cd ~/catkin_ws
         $ catkin_make
+        $ source ./devel/setup.sh
 
-# Run Example
+# Run an Example
 
-Launch Example
-===============
-Start ROS Core
-$ roscore
+Start the MOOS Database
 
-In a new terminal, start the MOOS Database  
-$ MOOSDB
+    $ MOOSDB
 
-In a new terminal, start MOOS/ROS Bridge  
-$ cd ~/repos/moos-ros-bridge/moosros  
-$ rosrun moosros Bridge counters.xml bridge.moos
+In a different terminal, run a launch file that will start the "Bridge" ROS
+node as well as a ROS node that increments a counter in the ROS topic,
+"CounterFromROS," with data type, `std_msgs::Int32`. Note that the Bridge ROS
+node requires both a `.moos` file (`bridge.moos`), so that it can connect to
+the appropriate MOOS database, and an XML file (`counters.xml`), so that the
+Bridge can translate between ROS and MOOS data types.
 
-In a new terminal, start ROS counter  
-$ rosrun moosros_tester counter
+    $ roslaunch moos-ros-bridge counter.launch
 
-In a new terminal, observe CounterFromROS  
-$ uMS  
-Make sure HostName is LOCALHOST and Port is 9000. Click on "Connect"
+In a new terminal, use `uMS` to observe the "CounterFromROS" topic being
+updated in MOOS:
 
-At this point, you should see the CounterFromROS variable incrementing.
-
-Using a ROS Launch file 
-========================= 
-
-In order to use a ros launch file with MOOS, you have to wrap the roslaunch
-call and the pAntler call inside of a bash script. There is an example bash
-script under /path/to/moosros_tester/scripts called counter.sh. This bash
-script makes the roslaunch call to an example launch filed located at
-moosros_tester/counter.launch, makes the appropriate call to pAntler, uses
-MOOS' uMAC to wait for the user to kill the processes, and then kills the
-roslaunch and pAntler processes.
-
-Note the use of $(rospack find moosros) call in counter.sh to point to the
-directory that holds the bridge.moos file. In counter.launch, "$(find moosros)"
-is used to point to that same directory.
-
-To test the bash script, use rosrun:
-
-$ rosrun moosros_tester counter.sh
-
-A uMS window will open up, press "Connect" to start monitoring variables. You
-should see the CounterFromROS variable incrementing. 
+    $ uMS
+    
+Make sure HostName is LOCALHOST and Port is 9000. Click on "Connect." You
+should see the CounterFromROS variable incrementing.
 
 At this point, the Bridge is also looking for changes in the "CounterFromMOOS"
 variable in the MOOS community. Let's monitor the variable in ROS as we change
-it using uMS. Open a new terminal and start rostopic echo:
+it using uMS. Open a new terminal and run the `rostopic echo` command:
 
-$ rostopic echo /CounterFromMOOS
+    $ rostopic echo /CounterFromMOOS
 
 In the uMS window, CTRL+RightClick on an empty row. Enter the variable name:
 CounterFromMOOS. Choose NUMERIC. Enter value: 42. You should see the rostopic
 echo program print out the following:
 
-data: 42
+    data: 42
+    
 ---
 
-Bridge Configuration
-========================
+
+## Run an Example from a Script
+
+Read through the bash script at `moos-ros-bridge/scripts/counter.sh` for an
+example of how to start both the Bridge ROS node and MOOS within the same
+script. Run the script:
+
+    $ rosrun moos-ros-bridge counter.sh        # Type CTRL+c to exit
+
+## Bridge Configuration
 
 The Bridge is configured using an XML file that specifies the names of ROS and
 MOOS topics and the associated data types. Look at
-/path/to/moos-ros-bridge/moosros/counters.xml for an example. In the XML file,
-each message consists of the following members:
+`moos-ros-bridge/config/counters.xml` and
+`moos-ros-bridge/config/moosrosconfig.xml` for examples. In the XML file, each
+message consists of the following members:
 
 moosname - the name of the moos variable
 
@@ -118,4 +107,3 @@ moostype - the type of the moos variable
 rostype - the type of the ros topic
 
 direction - the direction of the data over the bridge (either toMOOS or toROS).
-
